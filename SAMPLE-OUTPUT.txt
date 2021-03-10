@@ -1,0 +1,63 @@
+Script started on Sun Oct 18 16:25:37 2020
+bash-3.2$ ./ssum 269 < electoral.txt
+#### REPORT ####
+  NUM ELEMS            :   51
+  TARGET               :   269
+  NUM-FEASIBLE         :   16976480564070
+  MIN-CARD-FEASIBLE    :   11
+  NUM-MIN-CARD-FEASIBLE:   1
+Lex-First Min-Card Subset Totaling 269:
+ {
+    CA  ( id: 4; val: 55)
+    FL  ( id: 9; val: 29)
+    GA  ( id: 10; val: 16)
+    IL  ( id: 13; val: 20)
+    MI  ( id: 22; val: 16)
+    NY  ( id: 32; val: 29)
+    NC  ( id: 33; val: 15)
+    OH  ( id: 35; val: 18)
+    PA  ( id: 38; val: 20)
+    TX  ( id: 43; val: 38)
+    VA  ( id: 46; val: 13)
+ }
+bash-3.2$ ./ssum 220 < purple.txt
+#### REPORT ####
+  NUM ELEMS            :   31
+  TARGET               :   220
+  NUM-FEASIBLE         :   9958625
+  MIN-CARD-FEASIBLE    :   13
+  NUM-MIN-CARD-FEASIBLE:   57
+Lex-First Min-Card Subset Totaling 220:
+ {
+    AZ  ( id: 0; val: 11)
+    CO  ( id: 2; val: 9)
+    FL  ( id: 5; val: 29)
+    GA  ( id: 6; val: 16)
+    IN  ( id: 7; val: 11)
+    MI  ( id: 12; val: 16)
+    MN  ( id: 13; val: 10)
+    NJ  ( id: 19; val: 14)
+    NC  ( id: 20; val: 15)
+    OH  ( id: 21; val: 18)
+    PA  ( id: 23; val: 20)
+    TX  ( id: 26; val: 38)
+    VA  ( id: 27; val: 13)
+ }
+bash-3.2$ ./ssum 121 < purple.txt
+#### REPORT ####
+  NUM ELEMS            :   31
+  TARGET               :   121
+  NUM-FEASIBLE         :   9958625
+  MIN-CARD-FEASIBLE    :   5
+  NUM-MIN-CARD-FEASIBLE:   2
+Lex-First Min-Card Subset Totaling 121:
+ {
+    FL  ( id: 5; val: 29)
+    GA  ( id: 6; val: 16)
+    OH  ( id: 21; val: 18)
+    PA  ( id: 23; val: 20)
+    TX  ( id: 26; val: 38)
+ }
+bash-3.2$ exit
+
+Script done on Sun Oct 18 16:26:29 2020
