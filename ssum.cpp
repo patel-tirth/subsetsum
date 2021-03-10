@@ -128,26 +128,26 @@ class ssum_instance {
         }
     }
         done = true;
-        distinctSubSets= feasible[n][target];
+        distinctSubSets= feasible[n][target];  // get the distinct Subsets value 
+
         // return if target sum is not possible
-        // if(feasible[n][target] == false)
-        //   return false;
+        if(feasible[n][target] == 0)
+          return false;
 
-          Triplet t =  Triplet(n,target,"");
-           queue<Triplet> q ;
-           vector<string> allFeasible;
+          Triplet t =  Triplet(n,target,"");    // creating the instance of class Triplet storin total subsets totalling to target value
+           queue<Triplet> q ;   
 
-           q.push(t);
+           q.push(t);          // pushing that triplet in a queue
           //  int smallestSubset = INT_MAX;
             int k =0;
-           vector<int> sample;
+          vector<int> sample;    // this vector stores the indices of valid subsets 
 
          while(q.size() > 0 )
          {
-           Triplet t_instance = q.front();
-           q.pop();
+           Triplet t_instance = q.front();    // get the first triplet 
+           q.pop();                           // remove the first triplet 
            
-           if(t_instance.row ==0 || t_instance.col==0)
+           if(t_instance.row ==0 || t_instance.col==0)    // we add when row or col is 0, that is path is valid 
            {
             //  distinctSubSets++;
             stringstream iss( t_instance.idxPath );
@@ -159,15 +159,16 @@ class ssum_instance {
             }   
 
             mapOfVector[k] = sample;   // sample is a vector containing the indices of the elems
+                                        // storing each valid subset's indices in a  map(key,value) with value as a vector 
             k++;
             sample.clear();
            }
-           else
+           else   
            {
-              if(t_instance.col >= elems[t_instance.row-1].x)
+              if(t_instance.col >= elems[t_instance.row-1].x) // we include 
              {
                int inc = feasible[t_instance.row-1][t_instance.col - elems[t_instance.row-1].x];   // include case
-               if(inc != 0)
+               if(inc != 0)  // add the triplet with include case to queue
                {
                  string path = to_string(t_instance.row-1)+ " " + t_instance.idxPath;
                  q.push(Triplet(t_instance.row-1, t_instance.col - elems[t_instance.row-1].x, path));  //test-- 5 6 21 23 26 -> path 
@@ -175,22 +176,25 @@ class ssum_instance {
                }
              }
              int exc = feasible[t_instance.row-1][t_instance.col];  // exclude case 
-             if(exc != 0)
+             if(exc != 0)  // if exclude case stores a number greater than 0, we add to queue
              {
-               q.push(Triplet(t_instance.row-1,t_instance.col,t_instance.idxPath));
+               q.push(Triplet(t_instance.row-1,t_instance.col,t_instance.idxPath)); // add the triplet with exclude case to queue
              }
            }
          } // end while q.size
 
+              // storing the size of all subsets in a vector 
             for ( const auto &it : mapOfVector ) {
                      allValidSubsets.push_back(it.second.size()); 
               }
           // min size of the subset totaling target sum 
+          // finding the mimum size subset from allValidSubsets vector 
           minCardFeasible = *min_element(allValidSubsets.begin(), allValidSubsets.end()); 
          
          // count the total number of subsets with minimum size 
           numMinCardFeasible = count(allValidSubsets.begin(),allValidSubsets.end(),minCardFeasible);
 
+          // Here, looping through map and storing the index and values in lexicographical map. 
             for(const auto &it: mapOfVector){
                if(it.second.size() == minCardFeasible)
                    {
@@ -198,7 +202,7 @@ class ssum_instance {
                      {
                        lexicographical[i] = elems[i].x;
                      }
-                     break;
+                     break;            
                      cout <<endl;
                    }
             }
@@ -233,7 +237,7 @@ int main(int argc, char *argv[]) {
   unsigned long long int distinctSubSets =0;
   int minCardFeasible = 0 ;
   int numMinCardFeasible = 0 ;
-  map<int,int> lexicographical;
+  map<int,int> lexicographical;  // using map to store values in lexicographical manner as elements are ordered in map 
 
   if(argc != 2) {
     fprintf(stderr, "one cmd-line arg expected: target sum\n");
@@ -262,7 +266,7 @@ int main(int argc, char *argv[]) {
     cout<<"MIN-CARD-FEASIBLE       :   "<< minCardFeasible<< "\n";
     cout<<"NUM-MIN-CARD-FEASIBLE   :   " << numMinCardFeasible<< "\n";
     cout<<"Lex-first Min-Card Subset Totaling "<<target<< ":"<<endl;
-    cout<<"{"  <<endl;           ;
+    cout<<"{"  <<endl;           ;   // print the lexicogrphical map 
 
   for(auto it = lexicographical.begin(); it != lexicographical.end(); ++it){
     cout<< "   "<< ssi.elems[it->first].name<< " ( "<<"id: "<<it->first <<  "; "<<"val: "<<it->second << " )"<<endl;
